@@ -8,13 +8,17 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
 
   // ?title=<title>
-  const hasTitle = searchParams.has("title");
-  const title = hasTitle ? searchParams.get("title")?.slice(0, 100) : "PURISTA";
+  let title = searchParams.get("title")?.slice(0, 100);
 
-  const hasDescription = searchParams.has("description");
-  const description = hasDescription
-    ? searchParams.get("description")?.slice(0, 300)
-    : "IoT/EDGE - SERVER - CLOUD - SERVERLESS";
+  if (!title || title.toLowerCase() === "undefined") {
+    title = "PURISTA";
+  }
+
+  let description = searchParams.get("description")?.slice(0, 300);
+
+  if (!description || description.toLowerCase() === "undefined") {
+    description = "IoT/EDGE - SERVER - CLOUD - SERVERLESS";
+  }
 
   return new ImageResponse(
     (
