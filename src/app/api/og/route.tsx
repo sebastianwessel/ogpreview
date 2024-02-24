@@ -17,7 +17,7 @@ export async function GET(request: Request) {
   let description = searchParams.get("description")?.slice(0, 300);
 
   if (!description || description.toLowerCase() === "undefined") {
-    description = "IoT/EDGE - SERVER - CLOUD - SERVERLESS";
+    description = "THE TYPESCRIPT BACKEND FRAMEWORK";
   }
 
   return new ImageResponse(
