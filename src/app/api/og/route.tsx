@@ -5,6 +5,10 @@ import { ImageResponse } from "next/og";
 export const runtime = "edge";
 
 export async function GET(request: Request) {
+  const imageData = await fetch(new URL('./purista_logo.png', import.meta.url)).then(
+    (res) => res.arrayBuffer(),
+  );
+
   const { searchParams } = new URL(request.url);
 
   // ?title=<title>
@@ -36,6 +40,7 @@ export async function GET(request: Request) {
       >
         <div tw="bg-gray-50 flex">
           <div tw="flex flex-col md:flex-col w-full py-3 px-4 md:items-center justify-between p-8">
+            <img width="256" height="256" src={imageData} />
             <h1 tw="flex flex-col text-7xl font-extrabold text-gray-900 text-center">
               {title}
             </h1>
